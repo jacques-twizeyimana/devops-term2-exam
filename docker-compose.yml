@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     image: jtwizeyimana/devops-exam-frontend 
     ports:
-      - '4000:5000'
+      - '8080:80'
   database:
     build:
       context: database

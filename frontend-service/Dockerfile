@@ -8,12 +8,16 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 5000
+RUN npm run build
 
-RUN npm run build 
 # configure nginx
-FROM nginx
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder . /usr/share/nginx/html
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+# Remove default nginx static assets
+RUN rm -rf ./*
 
-CMD [ "npm","run", "serve" ]
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /usr/app/dist .
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+EXPOSE 80
