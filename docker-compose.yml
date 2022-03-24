@@ -18,7 +18,8 @@ services:
   database:
     build:
       context: database
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile    
+    image: "jtwizeyimana/devops-exam-db"
     restart: always
     ports:
       - '5432:5432'
@@ -26,6 +27,9 @@ services:
       - db:/var/lib/postgresql/data
   
   nginx:
+    build: 
+      context: nginx
+      dockerfile: Dockerfile 
     image: "jtwizeyimana/devops-exam-nginx"
     mem_limit: 128m
     hostname: nginx
