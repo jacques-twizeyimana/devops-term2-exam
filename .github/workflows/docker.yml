@@ -1,8 +1,12 @@
 name: Docker integration
 
-on: [push, pull_request]:
+on:
+  push:
     branches:
-      - 'exam'
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
 
 jobs:
   docker:
