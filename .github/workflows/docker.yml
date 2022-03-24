@@ -27,5 +27,6 @@ jobs:
       -
         name: Build images
         run: docker-compose build
+      -
         name: Push images to dockerhub
         run: docker-compose push
