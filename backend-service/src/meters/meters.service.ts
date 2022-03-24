@@ -1,48 +1,26 @@
-import { NotFoundException } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
-import { UpdateMeterDto } from './dto/update-meter.dto';
 import { CreateMeterDto } from './dto/create-meter.dto';
+import { UpdateMeterDto } from './dto/update-meter.dto';
 
 @Injectable()
-export class MeterService {
-  constructor(private readonly prisma: PrismaService) {}
-
-  async getAll(name?: string | undefined) {
-    if (name) {
-      return this.prisma.meter.findMany({
-        where: { name },
-      });
-    }
-
-    return this.prisma.meter.findMany();
+export class MetersService {
+  create(createMeterDto: CreateMeterDto) {
+    return 'This action adds a new meter';
   }
 
-  async getOne(id: string) {
-    return this.prisma.meter.findUnique({
-      where: { id },
-    });
+  findAll() {
+    return `This action returns all meters`;
   }
 
-  async insertOne(meter: CreateMeterDto) {
-    return this.prisma.meter.create({
-      data: meter,
-    });
+  findOne(id: number) {
+    return `This action returns a #${id} meter`;
   }
 
-  async updateOne(id: string, meter: UpdateMeterDto) {
-    return this.prisma.meter.update({
-      data: meter,
-      where: { id },
-    });
+  update(id: number, updateMeterDto: UpdateMeterDto) {
+    return `This action updates a #${id} meter`;
   }
 
-  async deleteOne(id: string): Promise<{ deleted: boolean; message?: string }> {
-    try {
-      await this.prisma.meter.delete({ where: { id } });
-      return { deleted: true };
-    } catch (err) {
-      return { deleted: false, message: err.message };
-    }
+  remove(id: number) {
+    return `This action removes a #${id} meter`;
   }
 }
