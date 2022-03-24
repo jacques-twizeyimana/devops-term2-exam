@@ -24,5 +24,12 @@ services:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
+  
+  nginx:
+    image: "jtwizeyimana/devops-exam-nginx"
+    mem_limit: 128m
+    hostname: nginx
+    ports:
+      - "80:80"
 volumes:
   db:
