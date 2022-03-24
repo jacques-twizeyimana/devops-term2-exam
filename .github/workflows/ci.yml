@@ -4,21 +4,14 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [16.14.1]
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Change directory
-        run: cd frontend-service
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: install
-        run: npm install
-      - name: lint
-        run: npm lint
-      - name: build
-        run: npm build
+    - uses: actions/checkout@v2
+    - name: change directory
+      run: cd frontend-service
+    - name: install dependencies
+      run: npm install
+    - name: Lint code
+      run: npm run lint
+    - name: build
+      run: npm run build
