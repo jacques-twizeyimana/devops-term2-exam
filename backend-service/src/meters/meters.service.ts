@@ -1,6 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
-import { Meter } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 import { UpdateMeterDto } from './dto/update-meter.dto';
 import { CreateMeterDto } from './dto/create-meter.dto';
@@ -9,7 +8,7 @@ import { CreateMeterDto } from './dto/create-meter.dto';
 export class MeterService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getAll(name?: string | undefined): Promise<Meter[]> {
+  async getAll(name?: string | undefined) {
     if (name) {
       return this.prisma.meter.findMany({
         where: { name },
@@ -19,19 +18,19 @@ export class MeterService {
     return this.prisma.meter.findMany();
   }
 
-  async getOne(id: string): Promise<Meter> {
+  async getOne(id: string) {
     return this.prisma.meter.findUnique({
       where: { id },
     });
   }
 
-  async insertOne(meter: CreateMeterDto): Promise<Meter> {
+  async insertOne(meter: CreateMeterDto) {
     return this.prisma.meter.create({
       data: meter,
     });
   }
 
-  async updateOne(id: string, meter: UpdateMeterDto): Promise<Meter> {
+  async updateOne(id: string, meter: UpdateMeterDto) {
     return this.prisma.meter.update({
       data: meter,
       where: { id },
