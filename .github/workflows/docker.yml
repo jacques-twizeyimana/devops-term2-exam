@@ -27,6 +27,7 @@ jobs:
       -
         name: Build and push frontend
         uses: docker/build-push-action@v2
+        run: ls
         with:
           context: "{{defaultContext}}:frontend-service"
           push: true
