@@ -3,10 +3,10 @@ name: Docker integration
 on:
   push:
     branches:
-      - 'main'
+      - 'exam'
   pull_request:
     branches:
-      - 'main'
+      - 'exam'
 
 jobs:
   docker:
