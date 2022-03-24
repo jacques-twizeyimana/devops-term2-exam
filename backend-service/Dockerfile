@@ -4,7 +4,7 @@ COPY ./package.json ./
 RUN npm install
 COPY . .
 #run database migration
-RUN npx prisma migrate deploy
+# RUN npx prisma migrate deploy
 #build for production
 RUN npm run build
 
