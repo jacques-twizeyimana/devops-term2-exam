@@ -14,12 +14,10 @@ services:
     ports:
       - '80:5000'
   database:
-    image: postgres:14.1-alpine
+    build:
+      context: database
+      dockerfile: Dockerfile
     restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=postgres
     ports:
       - '5432:5432'
     volumes:
