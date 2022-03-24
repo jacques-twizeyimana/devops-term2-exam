@@ -11,7 +11,5 @@ jobs:
       run: cd frontend-service
     - name: install dependencies
       run: npm install
-    - name: Lint code
-      run: npm run lint
     - name: build
       run: npm run build
