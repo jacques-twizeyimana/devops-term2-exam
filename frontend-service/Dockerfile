@@ -14,6 +14,6 @@ RUN npm run build
 # configure nginx
 FROM nginx
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app /usr/share/nginx/html
 
 CMD [ "npm","run", "serve" ]
